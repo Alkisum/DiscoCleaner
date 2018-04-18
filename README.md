@@ -125,6 +125,13 @@ show.log.enabled=
 ```
 
 
+## Dependencies
+
++ [mp3agic](https://github.com/mpatric/mp3agic)
++ [Gradle Shadow](https://github.com/johnrengelman/shadow)
++ [Commons IO](https://commons.apache.org/proper/commons-io/)
+
+
 ## License
 
 Project licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
