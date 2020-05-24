@@ -34,6 +34,7 @@ DiscoCleaner is a Java command tool allowing the user to clean his music folder.
 + Load album cover file to MP3 tag if necessary
 + Delete other files than MP3 and album cover file
 + Rename album directory according to predefined mask if necessary (based on MP3 tags)
++ Print out audio quality of each MP3 (bitrate and sample rate)
 
 
 ## Configuration
