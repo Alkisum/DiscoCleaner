@@ -1,7 +1,9 @@
 .gradle
 .idea
 build
+doc
 gradle
+out
 gradlew
 gradlew.bat
 discocleaner.log

@@ -110,6 +110,18 @@ log.enabled=
 # true if the logs has to be shown in an editor at the end of the process, false otherwise
 # default: false
 show.log.enabled=
+
+# true if the audio quality information should be printed for each MP3 file, false otherwise
+# default: false
+print.audio.quality.enabled=
+
+# Minimum bitrate value printed as valid, otherwise printed as warning
+# default: 320
+bitrate.min=
+
+# Minimum samplerate value printed as valid, otherwise printed as warning
+# default: 44100
+samplerate.min=
 ```
 
 

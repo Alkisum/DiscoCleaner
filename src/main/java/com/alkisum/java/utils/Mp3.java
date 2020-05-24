@@ -20,7 +20,7 @@ import java.util.Map;
  * Utility class for mp3 files.
  *
  * @author Alkisum
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 final class Mp3 {
@@ -102,6 +102,11 @@ final class Mp3 {
             return;
         }
 
+        // print audio quality info header
+        if (Config.isPrintAudioQualityEnabled()) {
+            Terminal.printInfo("KBit/s\t| Hz\t| Song", 2);
+        }
+
         // browse song files
         for (File song : files) {
 
@@ -112,6 +117,11 @@ final class Mp3 {
 
             // create MP3 file
             Mp3File mp3File = new Mp3File(song);
+
+            // print audio quality info
+            if (Config.isPrintAudioQualityEnabled()) {
+                printAudioQualityInfo(mp3File, song.getName());
+            }
 
             // check if MP3 file has ID3V1 tag
             if (mp3File.hasId3v1Tag()) {
@@ -485,5 +495,25 @@ final class Mp3 {
             }
         }
         Terminal.printConfirmation("Cover saved to MP3", 2);
+    }
+
+    /**
+     * Print Bitrate and Samplerate of the given MP3 file.
+     *
+     * @param mp3File  MP3 file to get audio quality information from
+     * @param fileName MP3 file name
+     */
+    private static void printAudioQualityInfo(final Mp3File mp3File,
+                                              final String fileName) {
+        int bitrate = mp3File.getBitrate();
+        int samplerate = mp3File.getSampleRate();
+        String message = bitrate + "\t| " + samplerate + "\t| " + fileName;
+
+        if (bitrate >= Config.getBitrateMin()
+                && samplerate >= Config.getSamplerateMin()) {
+            Terminal.printConfirmation(message, 2);
+        } else {
+            Terminal.printWarning(message, 2);
+        }
     }
 }

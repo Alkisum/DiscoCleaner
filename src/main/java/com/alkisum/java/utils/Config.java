@@ -14,7 +14,7 @@ import java.util.Properties;
  * Utility class for the application configuration.
  *
  * @author Alkisum
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 public final class Config {
@@ -116,6 +116,22 @@ public final class Config {
      * the process, false otherwise.
      */
     private boolean showLogEnabled = false;
+
+    /**
+     * Flag set to true if the audio quality information should be printed for
+     * each MP3 file, false otherwise.
+     */
+    private boolean printAudioQualityEnabled = false;
+
+    /**
+     * Minimum bitrate value printed as valid, otherwise printed as warning.
+     */
+    private int bitrateMin = 320;
+
+    /**
+     * Minimum samplerate value printed as valid, otherwise printed as warning.
+     */
+    private int samplerateMin = 44100;
 
     /**
      * Artist directory name given in --artist argument. If this attribute is
@@ -260,6 +276,27 @@ public final class Config {
             if (showLogEnabled != null && !showLogEnabled.isEmpty()) {
                 config.showLogEnabled = Boolean.parseBoolean(showLogEnabled);
             }
+
+            // load print print audio quality enabled flag
+            String printAudioQualityEnabled = prop.getProperty(
+                    "print.audio.quality.enabled");
+            if (printAudioQualityEnabled != null
+                    && !printAudioQualityEnabled.isEmpty()) {
+                config.printAudioQualityEnabled = Boolean.parseBoolean(
+                        printAudioQualityEnabled);
+            }
+
+            // load bitrate min
+            String bitrateMin = prop.getProperty("bitrate.min");
+            if (bitrateMin != null && !bitrateMin.isEmpty()) {
+                config.bitrateMin = Integer.parseInt(bitrateMin);
+            }
+
+            // load sample rate min
+            String samplerateMin = prop.getProperty("samplerate.min");
+            if (samplerateMin != null && !samplerateMin.isEmpty()) {
+                config.samplerateMin = Integer.parseInt(samplerateMin);
+            }
         }
     }
 
@@ -363,6 +400,30 @@ public final class Config {
      */
     public static boolean isShowLogEnabled() {
         return config.showLogEnabled;
+    }
+
+    /**
+     * @return true if the audio quality information should be printed for each
+     * MP3 file, false otherwise.
+     */
+    static boolean isPrintAudioQualityEnabled() {
+        return config.printAudioQualityEnabled;
+    }
+
+    /**
+     * @return Minimum bitrate value printed as valid, otherwise printed as
+     * warning
+     */
+    static int getBitrateMin() {
+        return config.bitrateMin;
+    }
+
+    /**
+     * @return Minimum samplerate value printed as valid, otherwise printed as
+     * warning
+     */
+    static int getSamplerateMin() {
+        return config.samplerateMin;
     }
 
     /**
