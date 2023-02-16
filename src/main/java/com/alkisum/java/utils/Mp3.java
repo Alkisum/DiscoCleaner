@@ -20,7 +20,7 @@ import java.util.Map;
  * Utility class for mp3 files.
  *
  * @author Alkisum
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  */
 final class Mp3 {
@@ -108,11 +108,12 @@ final class Mp3 {
         }
 
         // browse song files
+        Arrays.sort(files);
         for (File song : files) {
 
             // check only MP3
             if (!song.getName().endsWith(".mp3")) {
-                break;
+                continue;
             }
 
             // create MP3 file
